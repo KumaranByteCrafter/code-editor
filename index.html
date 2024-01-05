@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>live code editor</title>
+        <link rel="stylesheet" href="style.css"></link>
+        <script src="https://kit.fontawesome.com/e607dca931.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header style="text-align: center;color: aliceblue;font-size:xx-large;">web development code editor</header>
+        <div class="container">
+            <div class="left">
+                <label><i class="fa-brands fa-html5"></i>HTML</label>
+                <textarea id="html-code"></textarea>
+                <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
+                <textarea id="css-code"></textarea>
+                <label><i class="fa-brands fa-js"></i>Js</label>
+                <textarea id="js-code""></textarea>
+            </div>
+            <div class="right">
+                <label><i class="fa-solid fa-play">Output</i></label>
+                <iframe id="output"></iframe>
+            </div>
+        </div>
+        <script>
+            function updateOutput() {
+                const htmlCode = document.getElementById("html-code").value;
+                const cssCode = document.getElementById("css-code").value;
+                const jsCode = document.getElementById("js-code").value;
+                const output = document.getElementById("output").contentWindow.document;
+                output.open();
+                output.write(htmlCode + "<style>" + cssCode + "</style>" + "<script>" + jsCode + "<\/script>");
+                output.close();
+            }
+            document.getElementById("html-code").addEventListener("keyup", updateOutput);
+            document.getElementById("css-code").addEventListener("keyup", updateOutput);
+            document.getElementById("js-code").addEventListener("keyup", updateOutput);
+            updateOutput();
+        </script>        
+    </body>
+</html>
